@@ -20,15 +20,15 @@ else
 fi
 
 # Frontend URLs
-FRONTEND_URL="${HTTP_PREFIX}${HOSTNAME}:5000"
-MINIO_DASHBOARD_URL="${HTTP_PREFIX}${HOSTNAME}:9001"
+FRONTEND_URL="${HTTP_PREFIX}${HOSTNAME}:3298"
+MINIO_DASHBOARD_URL="${HTTP_PREFIX}${HOSTNAME}:9101"
 
 # Create or overwrite frontend .env.development file
 mkdir -p worklenz-frontend
 cat > worklenz-frontend/.env.development << EOL
 # API Connection
-VITE_API_URL=http://localhost:3000
-VITE_SOCKET_URL=ws://localhost:3000
+VITE_API_URL=http://localhost:8710
+VITE_SOCKET_URL=ws://localhost:8710
 
 # Application Environment
 VITE_APP_TITLE=Worklenz
@@ -48,8 +48,8 @@ EOL
 # Create frontend .env.production file
 cat > worklenz-frontend/.env.production << EOL
 # API Connection
-VITE_API_URL=${HTTP_PREFIX}${HOSTNAME}:3000
-VITE_SOCKET_URL=${WS_PREFIX}${HOSTNAME}:3000
+VITE_API_URL=${HTTP_PREFIX}${HOSTNAME}:8710
+VITE_SOCKET_URL=${WS_PREFIX}${HOSTNAME}:8710
 
 # Application Environment
 VITE_APP_TITLE=Worklenz
@@ -135,7 +135,7 @@ echo
 echo "To run with Docker Compose, use: docker-compose up -d"
 echo
 echo "Frontend URL: ${FRONTEND_URL}"
-echo "API URL: ${HTTP_PREFIX}${HOSTNAME}:3000"
-echo "Socket URL: ${WS_PREFIX}${HOSTNAME}:3000"
+echo "API URL: ${HTTP_PREFIX}${HOSTNAME}:8710"
+echo "Socket URL: ${WS_PREFIX}${HOSTNAME}:8710"
 echo "MinIO Dashboard URL: ${MINIO_DASHBOARD_URL}"
 echo "CORS is configured to allow requests from: ${FRONTEND_URL}"
