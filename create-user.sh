@@ -126,7 +126,9 @@ END \$\$;
 "
 
 # Execute the SQL command
-if docker exec -i "$DB_CONTAINER" psql -U "$DB_USER" -d "$DB_NAME" -c "$SQL_COMMAND" 2>&1 | grep -q "User created successfully"; then
+OUTPUT=$(docker exec -i "$DB_CONTAINER" psql -U "$DB_USER" -d "$DB_NAME" -c "$SQL_COMMAND" 2>&1)
+
+if echo "$OUTPUT" | grep -q "User created successfully"; then
     print_success "✓ User created successfully!"
     echo ""
     print_info "Login credentials:"
@@ -135,6 +137,8 @@ if docker exec -i "$DB_CONTAINER" psql -U "$DB_USER" -d "$DB_NAME" -c "$SQL_COMM
     echo ""
     print_info "The user has been given a 14-day trial period."
 else
-    print_error "Failed to create user. Please check the error messages above."
+    print_error "Failed to create user."
+    echo ""
+    echo "$OUTPUT"
     exit 1
 fi

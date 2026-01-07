@@ -368,3 +368,8 @@ Worklenz is open source and released under the [GNU Affero General Public Licens
 
 By contributing to Worklenz, you agree that your contributions will be licensed under its AGPL.
 
+
+---
+Create user:
+
+./create-user.sh "John Doe" "john@example.com" "password123"
